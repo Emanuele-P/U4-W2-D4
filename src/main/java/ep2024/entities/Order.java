@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -35,8 +36,10 @@ public class Order {
         LocalDate deliveryDate = orderDate.plusDays(random.nextInt(5, 15));
 
         Customer customer = listOfCustomers.get(random.nextInt(listOfCustomers.size()));
-        int productI = random.nextInt(1, availableProducts.size() + 1);
-        List<Product> products = new ArrayList<>(availableProducts.subList(random.nextInt(0, availableProducts.size()), random.nextInt(1, availableProducts.size())));
+
+        int productNum = random.nextInt(1, availableProducts.size() + 1);
+        Collections.shuffle(availableProducts);
+        List<Product> products = new ArrayList<>(availableProducts.subList(0, productNum));
 
         return new Order(status, orderDate, deliveryDate, products, customer);
     }

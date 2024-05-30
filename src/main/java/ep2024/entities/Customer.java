@@ -13,7 +13,7 @@ public class Customer {
         Random random = new Random();
         this.id = random.nextLong(100000000, 999999999);
         this.name = name;
-        this.tier = random.nextInt(1, 3);
+        this.tier = random.nextInt(1, 4);
     }
 
     public static Customer createRandomCustomer() {
