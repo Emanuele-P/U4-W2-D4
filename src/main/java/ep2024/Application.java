@@ -43,12 +43,7 @@ public class Application {
         Map<String, List<Customer>> orderByCustomer = customerList.stream()
                 .collect(Collectors.groupingBy(customer -> customer.getName()));
         orderByCustomer.forEach((customerName, customers) -> {
-            System.out.println("Customer: " + customerName);
-            customers.forEach(customer -> {
-                orders.stream()
-                        .filter(order -> order.getCustomer().getName().equals(customerName))
-                        .forEach(System.out::println);
-            });
+            System.out.println("Customer: " + customerName + ", Orders: " + orders);
         });
 
         System.out.println();
@@ -58,7 +53,7 @@ public class Application {
                         Collectors.summingDouble(order -> order.getProducts().stream()
                                 .mapToDouble(Product::getPrice)
                                 .sum())));
-        DecimalFormat df = new DecimalFormat();
+        DecimalFormat df = new DecimalFormat("#,##");
         totalByCustomer.forEach((customerName, totalImport) -> {
             System.out.println("Customer: " + customerName + ", total import: " + df.format(totalImport) + "$");
         });
